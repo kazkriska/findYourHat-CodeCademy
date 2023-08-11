@@ -2,6 +2,7 @@ const { inputLogic } = require('./inputLogic.js');
 const { gameLogic } = require('./gameLogic.js');
 
 const addTwoDimArrays = (firstArray, secondArray) => firstArray.map((value, index) => value + secondArray[index]);
+
 class Field {
     constructor(field) {
         this.field = field;
@@ -34,6 +35,6 @@ class Field {
     elementAtNextPosition(move) {
         return gameLogic(this.currentPosition, move, this.field);
     }
-}
+};
 exports.Field = Field;
-;
+
