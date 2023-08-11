@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')({sigint: true});
+const { inputLogic } = require('./inputLogic.js');
 
 const hat = '^';
 const hole = 'O';
@@ -25,7 +26,4 @@ const myField = new Field([
     ['░', '^', '░'],
   ]);
   
-//myField.print();
-
-myField.row = 0;
-console.log(myField.row + 3);
+myField.print();
