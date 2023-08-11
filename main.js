@@ -44,7 +44,7 @@ const myField = new Field([
     ['░', '^', '░'],
   ]);
   
-const generatedField = new Field(generateField(15,15,20));
+const generatedField = new Field(generateField(30,30,20));
 
 playGame(generatedField);
 

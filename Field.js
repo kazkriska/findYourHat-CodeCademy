@@ -35,6 +35,8 @@ class Field {
     elementAtNextPosition(move) {
         return gameLogic(this.currentPosition, move, this.field);
     }
+
+    
 };
 exports.Field = Field;
 
