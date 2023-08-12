@@ -1,7 +1,13 @@
 const { inputLogic } = require('./inputLogic.js');
 const { gameLogic } = require('./gameLogic.js');
+const prompt = require('prompt-sync')({sigint: true});
 
 const addTwoDimArrays = (firstArray, secondArray) => firstArray.map((value, index) => value + secondArray[index]);
+
+const hat = '^';
+const hole = 'O';
+const fieldCharacter = '░';
+const pathCharacter = '*';
 
 class Field {
     constructor(field) {
@@ -36,7 +42,36 @@ class Field {
         return gameLogic(this.currentPosition, move, this.field);
     }
 
-    
+    playGame() {
+        let isNextMovePossible = true;
+        while (isNextMovePossible) {
+
+            this.print();
+            let move = prompt('Which way? ');
+
+            if (this.isMoveWithinBoundary(move)) {
+
+                if (this.elementAtNextPosition(move) === hole) {
+                    console.log('You fell thru a hole, GAME OVER');
+                    isNextMovePossible = false;
+                } else if (this.elementAtNextPosition(move) === hat) {
+                    console.log('You found the hat, GAME WON');
+                    isNextMovePossible = false;
+                } else if (this.elementAtNextPosition(move) === fieldCharacter) {
+                    this.updateField(this.updatePosition(move));
+                    console.clear();
+                    isNextMovePossible = true;
+                } else {
+                    console.log('ERROR');
+                }
+
+            } else {
+
+                console.log('You went out of the field, GAME OVER');
+                isNextMovePossible = false;
+            }
+        };
+    }
 };
 exports.Field = Field;
 
